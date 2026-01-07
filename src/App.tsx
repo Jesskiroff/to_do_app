@@ -165,60 +165,60 @@ function App() {
             Add
           </button>
         </div>
-        <ul className="space-y-3">
-          {todos.map(todo => (
-            <li
-              key={todo.id}
-              className="flex items-center gap-2 bg-gray-800 p-3 rounded shadow"
-            >
-              {todo.isEditing ? (
-                <>
-                  <input
-                    className="flex-1 px-2 py-1 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
-                    value={editInput[todo.id] ?? ''}
-                    onChange={e =>
-                      setEditInput({ ...editInput, [todo.id]: e.target.value })
-                    }
-                    onKeyDown={e => handleEditKeyDown(e, todo.id)}
-                    autoFocus
-                  />
-                  <button
-                    className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded"
-                    onClick={() => saveEditTodo(todo.id)}
-                    aria-label="Save"
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded"
-                    onClick={() => cancelEditTodo(todo.id)}
-                    aria-label="Cancel"
-                  >
-                    Cancel
-                  </button>
-                </>
-              ) : (
-                <>
-                  <span className="flex-1 text-white break-words">{todo.text}</span>
-                  <button
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded"
-                    onClick={() => startEditTodo(todo.id, todo.text)}
-                    aria-label="Edit"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded"
-                    onClick={() => deleteTodo(todo.id)}
-                    aria-label="Delete"
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+        <ol className="space-y-3 list-decimal list-inside">
+  {todos.map(todo => (
+    <li
+      key={todo.id}
+      className="flex items-center gap-2 bg-gray-800 p-3 rounded shadow"
+    >
+      {todo.isEditing ? (
+        <>
+          <input
+            className="flex-1 px-2 py-1 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
+            value={editInput[todo.id] ?? ''}
+            onChange={e =>
+              setEditInput({ ...editInput, [todo.id]: e.target.value })
+            }
+            onKeyDown={e => handleEditKeyDown(e, todo.id)}
+            autoFocus
+          />
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded"
+            onClick={() => saveEditTodo(todo.id)}
+            aria-label="Save"
+          >
+            Save
+          </button>
+          <button
+            className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded"
+            onClick={() => cancelEditTodo(todo.id)}
+            aria-label="Cancel"
+          >
+            Cancel
+          </button>
+        </>
+      ) : (
+        <>
+          <span className="flex-1 text-white break-words">{todo.text}</span>
+          <button
+            className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded"
+            onClick={() => startEditTodo(todo.id, todo.text)}
+            aria-label="Edit"
+          >
+            Edit
+          </button>
+          <button
+            className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded"
+            onClick={() => deleteTodo(todo.id)}
+            aria-label="Delete"
+          >
+            Delete
+          </button>
+        </>
+      )}
+    </li>
+  ))}
+</ol>
         {todos.length === 0 && (
           <div className="text-gray-400 text-center mt-8">No to-dos yet. Add one above!</div>
         )}
